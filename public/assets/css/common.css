@@ -1,0 +1,29 @@
+#navbar-sns {
+    width: 230px;
+    margin: 80px auto 0;
+}
+#navbar-sns li {
+    float: left;
+    display: inline;
+}
+#navbar-sns li a {
+    margin: 0 25px;
+    padding: 0;
+}
+.navbar-collapse {
+    background: #FFF;
+}
+.nav-article {
+    background: url('../images/nav-bkg-01.png') 0 0;
+    height: 123px;
+    text-align: center;
+    position: fixed;
+    top:0;
+    width: 100%;
+}
+.nav-article img {
+    padding-top: 40px;
+}
+.content-article {
+    margin-top: 123px;
+}
