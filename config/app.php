@@ -167,6 +167,11 @@ return [
          * Package Service Providers...
          */
 
+        'Lavary\Menu\ServiceProvider',
+        Unisharp\Ckeditor\ServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Bestmomo\Filemanager\FilemanagerServiceProvider::class,
+
         //
 
         /*
@@ -225,6 +230,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Menu'       => 'Lavary\Menu\Facade',
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

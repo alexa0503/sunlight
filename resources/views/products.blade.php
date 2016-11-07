@@ -1,14 +1,13 @@
 @extends('layout')
 @section('content')
 <div class="rows">
-    <div class="products"><a href="#"><img src="{{asset('assets/images/product-01.jpg')}}"/></a></div>
-    <div class="products"><a href="#"><img src="{{asset('assets/images/product-02.jpg')}}"/></a></div>
-    <div class="products"><a href="#"><img src="{{asset('assets/images/product-03.jpg')}}"/></a></div>
-    <div class="products"><a href="#"><img src="{{asset('assets/images/product-04.jpg')}}"/></a></div>
+    @foreach ($rows as $row )
+    <div class="products"><a href="#" data-url="{{$row->description}}"><img src="{{asset($row->image)}}"/></a></div>
+    @endforeach
 </div>
 <div class="pop-bkg">
     <div class="pop-content">
-        <h2>http://sunlight.dev/products</h2>
+        <h2></h2>
         <div class="text-center">
             复制上方链接，<br/>既可打开淘宝购买
         </div>
@@ -25,7 +24,9 @@ $().ready(function(){
         $('.pop-bkg').hide();
         return false;
     })
-    $('.products').click(function(){
+    $('.products a').click(function(){
+        var url = $(this).attr('data-url');
+        $('.pop-content h2').text(url);
         $('.pop-bkg').show();
         return false;
     })

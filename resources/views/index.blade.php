@@ -2,10 +2,9 @@
 @section('content')
 <div class="rows">
     <ul class="bxslider">
-        <li><img src="{{asset('assets/images/index-slider-01.png')}}"/></li>
-        <li><img src="{{asset('assets/images/index-slider-01.png')}}"/></li>
-        <li><img src="{{asset('assets/images/index-slider-01.png')}}"/></li>
-        <li><img src="{{asset('assets/images/index-slider-01.png')}}"/></li>
+        @foreach ($rows as $row)
+        <li><img src="{{asset($row->image)}}"/></li>
+        @endforeach
     </ul>
 </div>
 

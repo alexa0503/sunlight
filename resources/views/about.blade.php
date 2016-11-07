@@ -1,7 +1,9 @@
 @extends('layout')
 @section('content')
 <div class="rows">
-    <img src="{{asset('assets/images/about.jpg')}}"/>
+    @foreach ($rows as $row)
+    <div><img src="{{asset($row->image)}}"/></div>
+    @endforeach
 </div>
 
 @endsection
