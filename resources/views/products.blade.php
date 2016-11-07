@@ -23,9 +23,11 @@ $().ready(function(){
     $('.products').height(h);
     $('button.close').click(function(){
         $('.pop-bkg').hide();
+        return false;
     })
     $('.products').click(function(){
         $('.pop-bkg').show();
+        return false;
     })
 });
 </script>
