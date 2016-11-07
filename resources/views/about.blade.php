@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <div class="rows">
-    <img src="{{asset('assets/images/about.png')}}"/>
+    <img src="{{asset('assets/images/about.jpg')}}"/>
 </div>
 
 @endsection

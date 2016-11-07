@@ -6,21 +6,42 @@
 <meta name="keywords" content="">
 <link rel="shortcut icon" href="{{asset('/assets/favicon.ico')}}"/>
 <link rel="bookmark" href="{{asset('/assets/favicon.ico')}}"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{{env("PAGE_TITLE")}}</title>
 <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.css')}}">
+<link rel="stylesheet" href="{{asset('/assets/css/jquery.bxslider.css')}}">
 <link rel="stylesheet" href="{{asset('/assets/css/common.css')}}">
 <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('/assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/assets/js/jquery.bxslider.min.js')}}"></script>
 <script src="{{asset('/assets/js/common.js')}}"></script>
+<!--移动端版本兼容 -->
+   <script type="text/javascript">
+            var phoneWidth =  parseInt(window.screen.width);
+            var phoneScale = phoneWidth/640;
+            var ua = navigator.userAgent;
+            if (/Android (\d+\.\d+)/.test(ua)){
+                      var version = parseFloat(RegExp.$1);
+                      if(version>2.3){
+                               document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+                      }else{
+                               document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+                      }
+            } else {
+                      document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+            }
+   </script>
+   <!--移动端版本兼容 end -->
 <script>
+var h = $(window).height();
 $().ready(function(){
-    var h = $(document).height();
-    $('#collapse').height(h);
+    $('#collapse').height(50);
     $('#collapse').on('show.bs.collapse', function() {
+        $('#collapse').height(h);
         $('.navbar-default').css('background-color','#FFF');
     }).on('hide.bs.collapse', function(){
+        $('#collapse').height(50);
         $('.navbar-default').css('background-color','transparent');
     });
 });
@@ -55,7 +76,7 @@ $().ready(function(){
           </ul>
           <ul class="nav navbar-nav navbar-right" id="navbar-sns">
               <li><a href=""><img src="{{asset('assets/images/icon-wechat.png')}}"/></a></li>
-              <li><img src="{{asset('assets/images/icon-divider.png')}}"/></li>
+              <li><img src="{{asset('assets/images/icon-divider.jpg')}}"/></li>
               <li><a href=""><img src="{{asset('assets/images/icon-weibo.png')}}"/></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->

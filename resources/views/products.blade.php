@@ -1,37 +1,18 @@
 @extends('layout')
 @section('content')
 <div class="rows">
-    <div id="carousel-generic" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-generic" data-slide-to="2"></li>
-        <li data-target="#carousel-generic" data-slide-to="3"></li>
-      </ol>
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="{{asset('assets/images/product-01.png')}}"/>
-          <div class="carousel-caption">
-          </div>
+    <div class="products"><a href="#"><img src="{{asset('assets/images/product-01.jpg')}}"/></a></div>
+    <div class="products"><a href="#"><img src="{{asset('assets/images/product-02.jpg')}}"/></a></div>
+    <div class="products"><a href="#"><img src="{{asset('assets/images/product-03.jpg')}}"/></a></div>
+    <div class="products"><a href="#"><img src="{{asset('assets/images/product-04.jpg')}}"/></a></div>
+</div>
+<div class="pop-bkg">
+    <div class="pop-content">
+        <h2>http://sunlight.dev/products</h2>
+        <div class="text-center">
+            复制上方链接，<br/>既可打开淘宝购买
         </div>
-        <div class="item">
-          <img src="{{asset('assets/images/product-02.png')}}"/>
-          <div class="carousel-caption">
-          </div>
-        </div>
-        <div class="item">
-          <img src="{{asset('assets/images/product-03.png')}}"/>
-          <div class="carousel-caption">
-          </div>
-        </div>
-        <div class="item">
-          <img src="{{asset('assets/images/product-04.png')}}"/>
-          <div class="carousel-caption">
-          </div>
-        </div>
-      </div>
+        <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
     </div>
 </div>
 
@@ -39,7 +20,13 @@
 @section('scripts')
 <script>
 $().ready(function(){
-
+    $('.products').height(h);
+    $('button.close').click(function(){
+        $('.pop-bkg').hide();
+    })
+    $('.products').click(function(){
+        $('.pop-bkg').show();
+    })
 });
 </script>
 @endsection
