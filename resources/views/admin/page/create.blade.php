@@ -18,7 +18,7 @@
                         <div class="panel panel-default">
                             <!-- Start .panel -->
                             <div class="panel-body pt0 pb0">
-                                {{ Form::open(array('url' => ['admin/page/'.$type_id], 'class'=>'form-horizontal group-border stripped', 'id'=>'form')) }}
+                                {{ Form::open(array('route' => ['type.page.store',$type_id], 'class'=>'form-horizontal group-border stripped', 'id'=>'form')) }}
                                     <div class="form-group">
                                         <label for="text" class="col-lg-2 col-md-3 control-label">标题</label>
                                         <div class="col-lg-10 col-md-9">
@@ -108,7 +108,7 @@ $(document).ready(function() {
         success: function() {
             $('#form .form-group .help-block').empty();
             $('#form .form-group').removeClass('has-error');
-            location.href='{{url("admin/pages/".$type_id)}}';
+            location.href='{{route("type.page.store",["type"=>$type_id])}}';
         },
         error: function(xhr){
             var json = jQuery.parseJSON(xhr.responseText);

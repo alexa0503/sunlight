@@ -17,15 +17,46 @@
     background: url('../images/nav-bkg-01.jpg') 0 0;
     height: 123px;
     text-align: center;
-    position: fixed;
     top:0;
     width: 100%;
 }
 .nav-article img {
     padding-top: 40px;
 }
-.content-article {
-    margin-top: 123px;
+.image-article {
+    position: relative;
+}
+.image-article .description {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.image-article .description h3,.image-article .description h2,.image-article .description h1 {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: normal;
+    text-align: right;
+}
+.image-article .description h3 {
+    background: #ffde00;
+    color: #5b0202;
+    font-size: 24px;
+    line-height: 24px;
+    margin: 0 30px 6px auto;
+    width: 140px;
+    padding-right: 4px;
+}
+.image-article .description h2 {
+    margin-bottom: 20px;
+    line-height: 28px;
+    font-size: 28px;
+    margin: 0 30px 24px 0;
+}
+.image-article .description h1 {
+    margin: 0 30px 0 0;
+    line-height: 46px;
+    font-size: 36px;
 }
 .bx-wrapper {
     margin: 0 auto;
@@ -45,13 +76,16 @@
 }
 .products {
     position: relative;
-    overflow: hidden;
 }
-.products img {
-    display: block;
+.products .products-button {
     position: absolute;
+    display: block;
+    height: 60px;
+    width: 100%;
     bottom: 0;
-    left:0;
+    right: 0;
+    margin-bottom: 120px;
+    text-align: center;
 }
 .pop-bkg {
     margin: auto;
@@ -82,9 +116,41 @@
     margin: 0 40px 20px;
     line-height: 80px;
     height: 80px;
+    color: #999999;
+    text-align: center;
 }
 .pop-content div {
     line-height: 40px;
     font-size: 26px;
     color: #999999;
+}
+#page-post h1,#page-post h2,#page-post h3 {
+    text-align: center;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+#page-post h3 {
+    background: #ffde00;
+    color: #333;
+    font-size: 24px;
+    line-height: 34px;
+    margin: 20px auto 6px auto;
+    width: 200px;
+}
+#page-post h2 {
+    line-height: 28px;
+    font-size: 28px;
+    color:#474a88;
+}
+#page-post h1 {
+    line-height: 46px;
+    font-size: 36px;
+    color:#474a88;
+    margin-top: 40px;
+}
+#page-post .page-content {
+    color: #999;
+    padding: 60px 80px 0;
+    font-size: 22px;
 }

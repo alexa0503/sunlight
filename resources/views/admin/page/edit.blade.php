@@ -1,4 +1,4 @@
-@extends('cms.layout')
+@extends('admin.layout')
 
 @section('content')
     <div class="page-content sidebar-page right-sidebar-page clearfix">
@@ -8,7 +8,7 @@
                 <!-- Start .page-content-inner -->
                 <div id="page-header" class="clearfix">
                     <div class="page-header">
-                        <h2>产品管理 - 添加<small>@if (App::getLocale() == 'zh-cn') 中文 @else 英文 @endif</small></h2>
+                        <h2>页面管理 - {{$row->title}} - 编辑</h2>
                     </div>
                 </div>
                 <!-- Start .row -->
@@ -18,65 +18,71 @@
                         <div class="panel panel-default">
                             <!-- Start .panel -->
                             <div class="panel-body pt0 pb0">
-                                {{ Form::open(array('route' => ['admin.press.update',$press->id], 'class'=>'form-horizontal group-border stripped', 'method'=>'PUT', 'id'=>'form')) }}
+                                {{ Form::open(array('route' => ['type.page.update',$row->type_id,$row->id], 'class'=>'form-horizontal group-border stripped', 'method'=>'PUT', 'id'=>'form')) }}
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">标题[英文]</label>
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">标题</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <input type="text" name="title_en" class="form-control" value="{{$press->title_en}}">
-                                            <label class="help-block" for="title_en"></label>
+                                            <input type="text" name="title" class="form-control" value="{{$row->title}}">
+                                            <label class="help-block" for="title"></label>
                                         </div>
                                     </div>
+                                    @if ($row->type_id == 3)
                                     <!-- End .form-group  -->
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">标题[中文]</label>
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">淘口令</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <input type="text" name="title_cn" class="form-control" value="{{$press->title_cn}}">
-                                            <label class="help-block" for="title_cn"></label>
+                                            <input type="text" name="description" class="form-control" value="{{$row->description}}">
+                                            <label class="help-block" for="description"></label>
                                         </div>
                                     </div>
+                                    @endif
+
+                                    @if ($row->type_id == 4)
                                     <!-- End .form-group  -->
                                     <div class="form-group">
-                                        <label for="text" class="col-lg-2 col-md-3 control-label">所属分类</label>
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">描述</label>
                                         <div class="col-lg-10 col-md-9">
-                                            <select name="parent_id" class="form-control">
-                                                <option value="">请选择所属分类/主分类</option>
-                                                @foreach ($types as $type)
-                                                <option value="{{$type->id}}" @if ($type->id == $press->parent_id) selected="selected" @endif>
-                                                    {{$type->title}}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            <label class="help-block" for="product_type"></label>
+                                            <input type="text" name="description" class="form-control" value="{{$row->description}}">
+                                            <label class="help-block" for="description"></label>
                                         </div>
                                     </div>
+                                    @endif
                                     <!-- End .form-group  -->
                                     <div class="form-group">
-                                        <label class="col-lg-2 col-md-3 control-label" for="">缩略图</label>
+                                        <label class="col-lg-2 col-md-3 control-label" for="">图片</label>
                                         <div class="col-lg-10 col-md-9">
                                             <div class="thumb-preview" id="thumb-preview">
-                                                <img src="{{asset($press->thumb)}}" />
+                                                <a href="{{asset($row->image)}}" target="_blank"><img src="{{asset($row->image)}}" /></a>
                                             </div>
-                                            <input type="file" name="thumb" class="filestyle" data-buttonText="Find file" data-buttonName="btn-danger" data-iconName="fa fa-plus" id="thumb-file">
-                                            <label class="help-block" for="thumb"></label>
-                                        </div>
-                                    </div>
-                                    <!-- End .form-group  -->
-                                    <div class="form-group">
-                                        <label class="col-lg-2 col-md-3 control-label" for="">详细图</label>
-                                        <div class="col-lg-10 col-md-9">
-                                            <div class="thumb-preview" id="image-preview">
-                                                @if (isset($press->image))<img src="{{asset($press->image)}}" />@endif
-                                            </div>
-                                            <input type="file" name="image" class="filestyle" data-buttonText="Find file" data-buttonName="btn-danger" data-iconName="fa fa-plus" id="image-file">
+                                            <input type="file" name="image" class="filestyle" data-buttonText="Find file" data-buttonName="btn-danger" data-iconName="fa fa-plus" id="thumb-file">
                                             <label class="help-block" for="image"></label>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
                                     <div class="form-group">
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">排序ID</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <input type="text" name="sort_id" class="form-control" value="{{$row->sort_id}}">
+                                            <label class="help-block" for="sort_id"></label>
+                                        </div>
+                                    </div>
+
+                                    @if ($row->type_id == 4)
+                                    <div class="form-group">
+                                        <label for="text" class="col-lg-2 col-md-3 control-label">内容</label>
+                                        <div class="col-lg-10 col-md-9">
+                                            <textarea name="content" class="form-control article-ckeditor">{{$row->content}}</textarea>
+                                            <label class="help-block" for="content"></label>
+                                        </div>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                    @endif
+                                    <!-- End .form-group  -->
+                                    <div class="form-group">
                                         <label class="col-lg-2 col-md-3 control-label"></label>
                                         <div class="col-lg-10 col-md-9">
                                             <button class="btn btn-default ml15" type="submit">提 交</button>
-                                            <a class="btn btn-default ml15" href="{{route('admin.press.index')}}">返回</a>
+                                            <a class="btn btn-default ml15" href="{{url('admin/page/index')}}">返回</a>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
@@ -103,7 +109,7 @@ $(document).ready(function() {
         success: function() {
             $('#form .form-group .help-block').empty();
             $('#form .form-group').removeClass('has-error');
-            location.href='{{route("admin.press.index",["type"=>$press->parent_id])}}';
+            location.href='{{route("type.page.index",["type"=>$row->type_id])}}';
         },
         error: function(xhr){
             var json = jQuery.parseJSON(xhr.responseText);

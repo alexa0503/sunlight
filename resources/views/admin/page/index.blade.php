@@ -32,7 +32,9 @@
                                         <th>描述</th>
                                         @endif
                                         <th>图片</th>
+                                        <th>排序</th>
                                         <th>创建时间</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -43,7 +45,11 @@
                                         <td>{{ $row->description }}</td>
                                         @endif
                                         <td><a href="{{ asset($row->image) }}"><img src="{{ asset($row->image) }}" style="max-width:200px;max-height:200px;" /></a></td>
+                                        <td>{{ $row->sort_id }}</td>
                                         <td>{{ $row->created_at }}</td>
+                                        <td>
+                                            <a href="{{route('type.page.edit',['type'=>$row->type_id,'id'=>$row->id])}}" class="label label-info">编辑</a>
+                                            <a href="{{route('type.page.destroy',['type'=>$row->type_id,'id'=>$row->id])}}" class="delete label label-info">删除</a></td>
                                     </tr>
                                     @endforeach
                                     </tbody>

@@ -12,20 +12,15 @@
 */
 
 Route::get('/', function () {
-    $rows = \App\Page::where('type_id', 1)->orderBy('sort_id', 'ASC')->get();
+    $rows[0] = \App\Page::where('type_id', 1)->orderBy('sort_id', 'ASC')->get();
+    $rows[1] = \App\Page::where('type_id', 2)->orderBy('sort_id', 'ASC')->get();
+    $rows[2] = \App\Page::where('type_id', 3)->orderBy('sort_id', 'ASC')->get();
+    $rows[3] = \App\Page::where('type_id', 4)->orderBy('sort_id', 'ASC')->get();
     return view('index', ['rows'=>$rows]);
 });
-Route::get('products', function () {
-    $rows = \App\Page::where('type_id', 3)->orderBy('sort_id', 'ASC')->get();
-    return view('products', ['rows'=>$rows]);
-});
-Route::get('about', function () {
-    $rows = \App\Page::where('type_id', 2)->orderBy('sort_id', 'ASC')->get();
-    return view('about', ['rows'=>$rows]);
-});
-Route::get('article', function () {
-    $rows = \App\Page::where('type_id', 4)->orderBy('sort_id', 'ASC')->get();
-    return view('article', ['rows'=>$rows]);
+Route::get('post/{id}', function($id){
+    $row = \App\Page::find($id);
+    return view('post', ['row'=>$row]);
 });
 
 
@@ -49,9 +44,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
 
     Route::group(['middleware' => ['auth.admin:admin','menu']], function () {
         Route::get('/', 'IndexController@index')->name('admin_dashboard');
-        Route::get('pages/{type_id}', 'PageController@index');
-        Route::get('page/{type_id}/create', 'PageController@create');
-        Route::post('page/{type_id}', 'PageController@store');
+        Route::resource('type.page', 'PageController');
+
         Route::get('users', 'IndexController@users');
         Route::get('account', 'IndexController@account');
         Route::post('account', 'IndexController@accountPost');
