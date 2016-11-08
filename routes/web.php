@@ -12,14 +12,46 @@
 */
 
 Route::get('/', function () {
-    $rows[0] = \App\Page::where('type_id', 1)->orderBy('sort_id', 'ASC')->get();
-    $rows[1] = \App\Page::where('type_id', 2)->orderBy('sort_id', 'ASC')->get();
-    $rows[2] = \App\Page::where('type_id', 3)->orderBy('sort_id', 'ASC')->get();
-    $rows[3] = \App\Page::where('type_id', 4)->orderBy('sort_id', 'ASC')->get();
+    $rows[0] = \App\Page::where('type_id', 1)->orderBy('sort_id', 'ASC')
+        ->get()
+        ->map(function($item, $value){
+        $img_size = getimagesize(public_path($item->image));
+        $item->image_height = $img_size[1];
+        $item->image_width = $img_size[0];
+        return $item;
+    });
+    $rows[1] = \App\Page::where('type_id', 2)->orderBy('sort_id', 'ASC')
+        ->get()
+        ->map(function($item, $value){
+            $img_size = getimagesize(public_path($item->image));
+            $item->image_height = $img_size[1];
+            $item->image_width = $img_size[0];
+            return $item;
+        });
+    $rows[2] = \App\Page::where('type_id', 3)->orderBy('sort_id', 'ASC')
+        ->get()
+        ->map(function($item, $value){
+            $img_size = getimagesize(public_path($item->image));
+            $item->image_height = $img_size[1];
+            $item->image_width = $img_size[0];
+            return $item;
+        });
+    $rows[3] = \App\Page::where('type_id', 4)->orderBy('sort_id', 'ASC')
+        ->limit(4)
+        ->get()
+        ->map(function($item, $value){
+            $img_size = getimagesize(public_path($item->image));
+            $item->image_height = $img_size[1];
+            $item->image_width = $img_size[0];
+            return $item;
+        });
     return view('index', ['rows'=>$rows]);
 });
 Route::get('post/{id}', function($id){
     $row = \App\Page::find($id);
+    if( null == $row || $row->type_id != 4 ){
+        return redirect('/');
+    }
     return view('post', ['row'=>$row]);
 });
 

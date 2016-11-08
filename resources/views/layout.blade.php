@@ -6,7 +6,9 @@
 <meta name="keywords" content="">
 <link rel="shortcut icon" href="{{asset('/assets/favicon.ico')}}"/>
 <link rel="bookmark" href="{{asset('/assets/favicon.ico')}}"/>
-<meta name="viewport" content="width=640,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="msapplication-tap-highlight" content="no"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{{env("PAGE_TITLE")}}</title>
 <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.css')}}">
@@ -19,17 +21,19 @@
 
 <!--移动端版本兼容 -->
     <script type="text/javascript">
-    var phoneWidth =  parseInt(window.screen.width);
-    var phoneScale = phoneWidth/640;
-    var ua = navigator.userAgent;
-    if (/Android (\d+\.\d+)/.test(ua)){
-        var version = parseFloat(RegExp.$1);
-        if(version>2.3){
-            document.write('<meta name="viewport" content="width=640, initial-scale=1,minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
-        }else{
-            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+    var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
         }
-    }
     </script>
     <!--移动端版本兼容 end -->
 <script>

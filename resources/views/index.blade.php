@@ -3,25 +3,25 @@
 <div class="rows" id="page-index">
     <ul class="bxslider">
         @foreach ($rows[0] as $row)
-        <li><img src="{{asset($row->image)}}"/></li>
+        <li><img src="{{asset($row->image)}}" width="{{$row->image_width}}" height="{{$row->image_height}}" /></li>
         @endforeach
     </ul>
 </div>
 <div class="rows" id="page-about">
     @foreach ($rows[1] as $row)
-    <div><img src="{{asset($row->image)}}"/></div>
+    <div><img src="{{asset($row->image)}}" width="{{$row->image_width}}" height="{{$row->image_height}}" /></div>
     @endforeach
 </div>
 <div class="rows" id="page-products">
     @foreach ($rows[2] as $row )
-    <div class="products"><img src="{{asset($row->image)}}"/><div class="products-button"><a href="#" data-url="{{$row->description}}"><img src="{{asset('assets/images/spacer.gif')}}" width="200" height="60" /></a></div></div>
+    <div class="products"><img src="{{asset($row->image)}}" width="{{$row->image_width}}" height="{{$row->image_height}}" /><div class="products-button"><a href="#" data-url="{{$row->description}}"><img src="{{asset('assets/images/spacer.gif')}}" width="200" height="60" /></a></div></div>
     @endforeach
 </div>
 <div class="rows" id="page-article">
     <div class="nav-article"><img src="{{asset('assets/images/nav-article.png')}}"/></div>
     <div class="content-article">
         @foreach ($rows[3] as $row )
-        <div class="image-article"><a href="{{url('post',['id'=>$row->id])}}"><img src="{{asset($row->image)}}"/></a><div class="description"><h3>{{date('Y-m-d',strtotime($row->created_at))}}</h3><h1>{{$row->title}}</h1><h2>{{$row->description}}</h2></div></div>
+        <div class="image-article"><a href="{{url('post',['id'=>$row->id])}}"><img src="{{asset($row->image)}}" width="{{$row->image_width}}" height="{{$row->image_height}}" /></a><div class="description"><h3>{{date('Y-m-d',strtotime($row->created_at))}}</h3><h1>{{$row->title}}</h1><h2>{{$row->description}}</h2></div></div>
         @endforeach
         <div class="text-center" style="margin:60px 0;"><a href="javascript:;"><img src="{{asset('assets/images/btn-01.png')}}"/></a></div>
     </div>
