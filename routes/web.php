@@ -10,12 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+Route::get('/', function(){
+    return redirect('/h5/index.html');
+});
+Route::get('index', function () {
     $rows[0] = \App\Page::where('type_id', 1)->orderBy('sort_id', 'ASC')
         ->get()
         ->map(function($item, $value){
-        $img_size = getimagesize(public_path($item->image));
+        $img_size = @getimagesize(public_path($item->image));
         $item->image_height = $img_size[1];
         $item->image_width = $img_size[0];
         return $item;
@@ -23,7 +25,7 @@ Route::get('/', function () {
     $rows[1] = \App\Page::where('type_id', 2)->orderBy('sort_id', 'ASC')
         ->get()
         ->map(function($item, $value){
-            $img_size = getimagesize(public_path($item->image));
+            $img_size = @getimagesize(public_path($item->image));
             $item->image_height = $img_size[1];
             $item->image_width = $img_size[0];
             return $item;
@@ -31,7 +33,7 @@ Route::get('/', function () {
     $rows[2] = \App\Page::where('type_id', 3)->orderBy('sort_id', 'ASC')
         ->get()
         ->map(function($item, $value){
-            $img_size = getimagesize(public_path($item->image));
+            $img_size = @getimagesize(public_path($item->image));
             $item->image_height = $img_size[1];
             $item->image_width = $img_size[0];
             return $item;
@@ -40,7 +42,7 @@ Route::get('/', function () {
         ->limit(4)
         ->get()
         ->map(function($item, $value){
-            $img_size = getimagesize(public_path($item->image));
+            $img_size = @getimagesize(public_path($item->image));
             $item->image_height = $img_size[1];
             $item->image_width = $img_size[0];
             return $item;
@@ -55,14 +57,37 @@ Route::get('post/{id}', function($id){
     return view('post', ['row'=>$row]);
 });
 
+Route::get('wx/share', function(){
+    $url = urldecode(Request::get('url'));
 
+    $options = [
+      'app_id' => env('WECHAT_APPID'),
+      'secret' => env('WECHAT_SECRET'),
+      'token' => env('WECHAT_TOKEN')
+    ];
+    $wx = new EasyWeChat\Foundation\Application($options);
+    $js = $wx->js;
+    $js->setUrl($url);
+    $config = json_decode($js->config(array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ'), false), true);
+    $share = [
+      'title' => '',
+      'desc' => '',
+      'imgUrl' => asset(env('WECHAT_SHARE_IMG')),
+      'link' => url('/'),
+    ];
+    return response()
+        ->json(array_merge($share, $config))
+        ->withHeaders([
+            'Access-Control-Allow-Origin:*',
+        ]);
+});
 
 
 Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
 {
     $router->get('login', 'LoginController@showLoginForm')->name('admin.login');
     $router->post('login', 'LoginController@login');
-    $router->post('logout', 'LoginController@logout');
+    $router->get('logout', 'LoginController@logout');
     /*
     Route::get('/login', 'Admin\AuthController@getLogin');
     Route::post('/login', 'Admin\AuthController@postLogin');

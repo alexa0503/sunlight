@@ -36,7 +36,7 @@ class PageController extends Controller
             $this->validate($request, [
                 'title' => 'required|max:60',
                 'sort_id' => 'required|max:11',
-                'image' => 'mimes:jpeg,bmp,png',
+                'image' => 'required|mimes:jpeg,bmp,png,gif',
             ]);
         }
         $image = null;
@@ -89,7 +89,7 @@ class PageController extends Controller
                 'title' => 'required|max:60',
                 'description' => 'required|max:120',
                 'sort_id' => 'required|max:11',
-                'image' => 'mimes:jpeg,bmp,png',
+                'image' => 'required|mimes:jpeg,bmp,png,gif',
             ]);
         }
         else{
@@ -130,14 +130,21 @@ class PageController extends Controller
         return [];
     }
 
+    public function show($id)
+    {
+        return [];
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($type_id, $id)
     {
-        //
+        $page = \App\Page::findOrFail($id);
+        $page->delete();
+        return ['ret'=>0];
     }
 }

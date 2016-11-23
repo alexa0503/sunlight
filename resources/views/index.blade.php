@@ -1,23 +1,27 @@
 @extends('layout')
 @section('content')
 <div class="rows" id="page-index">
-    <ul class="bxslider">
+    <div class="slick">
         @foreach ($rows[0] as $row)
-        <li><img src="{{asset($row->image)}}" width="{{$row->image_width}}" height="{{$row->image_height}}" /></li>
+        <div><img src="{{asset($row->image)}}" width="{{$row->image_width}}" height="{{$row->image_height}}" /></div>
         @endforeach
-    </ul>
+    </div>
 </div>
 <div class="rows" id="page-about">
+    <a href="#about" name="about"></a>
     @foreach ($rows[1] as $row)
     <div><img src="{{asset($row->image)}}" width="{{$row->image_width}}" height="{{$row->image_height}}" /></div>
     @endforeach
 </div>
 <div class="rows" id="page-products">
-    @foreach ($rows[2] as $row )
+    <a href="#products" name="products"></a>
+    @foreach ($rows[2] as $key => $row )
+    <a href="#product-{{$key+1}}" name="product-{{$key+1}}"></a>
     <div class="products"><img src="{{asset($row->image)}}" width="{{$row->image_width}}" height="{{$row->image_height}}" /><div class="products-button"><a href="#" data-url="{{$row->description}}"><img src="{{asset('assets/images/spacer.gif')}}" width="200" height="60" /></a></div></div>
     @endforeach
 </div>
 <div class="rows" id="page-article">
+    <a href="#article" name="article"></a>
     <div class="nav-article"><img src="{{asset('assets/images/nav-article.png')}}"/></div>
     <div class="content-article">
         @foreach ($rows[3] as $row )
@@ -39,12 +43,10 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
-    $('.bxslider').bxSlider({
-        auto: true,
-        controls:false,
-        responsive:true
-    });
-    //$('.products').height(h);
+    $(".slick").slick({
+        dots: true,
+        arrows: false
+      });
     $('button.close').click(function(){
         $('.pop-bkg').hide();
         return false;
@@ -55,6 +57,7 @@ $(document).ready(function() {
         $('.pop-bkg').show();
         return false;
     })
+    //$("body").niceScroll({scrollspeed:600});
 });
 </script>
 @endsection

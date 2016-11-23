@@ -10,6 +10,7 @@
         "lavary/laravel-menu": "dev-master",
         "unisharp/laravel-ckeditor": "^4.5",
         "bestmomo/filemanager": "1.1.*",
+        "overtrue/laravel-wechat": "~3.0",
         "laravelcollective/html":"^5.3.0"
     },
     "require-dev": {

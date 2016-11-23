@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="description" content="">
+	<!--<meta content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" name="viewport" />
+	--><meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/style3.css">
+<!--移动端版本兼容 -->
+<!--<script type="text/javascript">
+         var ww =  parseInt(window.screen.width);
+         var hh =  parseInt(window.screen.height);
+		 var phoneWidth= (ww>hh)?hh:ww;
+         var phoneScale = phoneWidth/640;
+         var ua = navigator.userAgent;
+         if (/Android (\d+\.\d+)/.test(ua)){
+                   var version = parseFloat(RegExp.$1);
+                   if(version>2.3){
+                            document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+                   }else{
+                            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+                   }
+         } else {
+                   document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+         }
+</script>-->
+<!--移动端版本兼容 end -->
+	<script type="text/javascript">
+		(function(doc, win) {
+			console.log();
+			var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function() {
+					var clientWidth = docEl.clientWidth;
+					if (!clientWidth) return;
+					docEl.style.fontSize = 100 * (clientWidth / 640) + 'px'
+				};
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false)
+		})(document, window);
+	</script>
+	
+	
+	<style>
+	body{background-color:#ffca00;}
+	.wjdiv{position:absolute;}
+	</style>
+</head>
+
+<body onload="main();" style="background-color:#ffca00;background:#ffca00;">
+	<!--<div id="loading_pp"  style="background-color:#ffca00;">
+	-->	<div id="loading_bg" style="background-color:#ffca00;position:absolute;z-index:1000;">  
+			<div id="s0_bg" style=" left: 0px; top: 0px;  position:absolute;"></div>
+			<div id="s0_logo" style=" left: 26px; top: 182px;  position:absolute;"></div>
+			<div id="ps1_ps11" style=" left: 372px; top: 551px;  position:absolute;"></div>
+			<div id="ps1_ps10" style=" left: 366px; top: 551px;  position:absolute;"></div>
+			<div id="ps1_ps9" style=" left: 360px; top: 551px;  position:absolute;"></div>
+			<div id="ps1_ps8" style=" left: 345px; top: 538px;  position:absolute;"></div>
+			<div id="ps1_ps7" style=" left: 327px; top: 539px;  position:absolute;"></div>
+			<div id="ps1_ps6" style=" left: 318px; top: 539px;  position:absolute;"></div>
+			<div id="ps1_ps5" style=" left: 303px; top: 539px;  position:absolute;"></div>
+			<div id="ps1_ps4" style=" left: 286px; top: 539px;  position:absolute;"></div>
+			<div id="ps1_ps3" style=" left: 270px; top: 538px;  position:absolute;"></div>
+			<div id="ps1_ps2" style=" left: 259px; top: 539px;  position:absolute;"></div>
+		</div>
+	<!--</div>-->
+
+	<div id="main">
+		<div id="bg"></div>
+		<div id="three"></div>
+	</div>    
+	
+	<script type="text/javascript" src="script/img.js"></script>
+	<script type="text/javascript" src="script/main.js"></script>
+	
+	<script type="text/javascript" src="script/lib/common.js"></script>
+<!--	<script type="text/javascript" src="script/lib/css3d.js"></script>
+	<script type="text/javascript" src="script/lib/jstween.js"></script>
+	<script type="text/javascript" src="script/lib/orienter.js"></script>
+	<script type="text/javascript" src="script/lib/jstimeline.js"></script>
+	<script type="text/javascript" src="script/lib/zepto.js"></script>
+	<script type="text/javascript" src="script/lib/fx.js"></script>
+	<script type="text/javascript" src="script/lib/fx_methods.js"></script>
+	<script type="text/javascript" src="script/lib/event.js"></script>-->
+	
+	<script type="text/javascript" src="script/old/imagesloaded.js"></script>
+	<script type="text/javascript" src="http://appmedia.qq.com/media/shact/app.video.player.v3.js"></script>
+	
+	<script type="text/javascript" src="script/old/anta_commo.js"></script>
+	<script type="text/javascript" src="script/old/anta.js?r=1.916"></script>
+	
+	<!--<script type="text/javascript" src="script/old/anta_bg.js"></script>-->
+	<!--<script type="text/javascript" src="script/old/anta_object.js"></script>-->
+	<!--<script type="text/javascript" src="script/old/anta_dots.js"></script>-->
+	<!--<script type="text/javascript" src="script/old/anta_touch.js"></script>-->
+	<!--<script type="text/javascript" src="script/old/anta_gravity.js"></script>-->
+	
+	<!--<script type="text/javascript" src="http://appmedia.qq.com/media/jslib/1.5/bootstrap.js" id="jslibNode" arg="{'cpid':641012099,'appid':4007203}" cfg="{'toolbar':false,'track':true}"></script>
+	--><!--<script type="text/javascript" src="script/old/project.js"></script>-->
+	<script type="text/javascript">  
+		function isWeiXin() {
+			var ua = window.navigator.userAgent.toLowerCase();
+			if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+				return true;
+			} else {
+				//return false;
+				return true;
+			}
+		} 
+	</script>
+<div style="display:none;">
+	<script src="https://s11.cnzz.com/z_stat.php?id=1260808784&web_id=1260808784" language="JavaScript"></script>
+</div>
+
+	
+</body>
+
+</html>
