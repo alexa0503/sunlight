@@ -70,8 +70,8 @@ Route::get('wx/share', function(){
     $js->setUrl($url);
     $config = json_decode($js->config(array('onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ'), false), true);
     $share = [
-      'title' => '',
-      'desc' => '',
+      'title' => env('WECHAT_TITLE'),
+      'desc' => env('WECHAT_DESC'),
       'imgUrl' => asset(env('WECHAT_SHARE_IMG')),
       'link' => url('/'),
     ];

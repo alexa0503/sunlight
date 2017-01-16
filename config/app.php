@@ -174,6 +174,7 @@ return [
 
         //
 
+        Overtrue\LaravelWechat\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -233,6 +234,7 @@ return [
         'Menu'       => 'Lavary\Menu\Facade',
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
 
     ],
 

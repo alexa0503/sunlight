@@ -19,6 +19,7 @@
 <script src="{{asset('/assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('/assets/js/slick/slick.min.js')}}"></script>
 <script src="{{asset('/assets/js/common.js')}}"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="{{asset('/assets/js/wx.js')}}"></script>
 
 <!--移动端版本兼容 -->
